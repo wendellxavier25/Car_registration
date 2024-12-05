@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+
+
+{% block 'body' %}
+
+<link rel="stylesheet" href="{% static 'car/css/car.css' %}">
+
+    {% include "partials/navbar.html" %}
+
+    <form method="GET" action="{% url 'car:cars_list' %}">
+        <input type="text" name="search" placeholder="Search car...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="car-grid">
+        {% if cars %}
+            {% for car in cars %}
+                <div class="car-card">
+
+                    {% if car.photo %}
+                        <img src="{{ car.photo.url}}" alt="{{ car.model }} {{ car.brand }}">
+                    {% else %}
+                        <img src="/static/images/no-image.WEBP" alt="image invalid">
+                    {% endif %}
+
+                        <h2>{{ car.brand }} {{ car.model }}</h2>
+                        <p>{{ car.factory_year }} - R$ {{ car.value| intcomma }}</p>
+                </div>
+            {% endfor %}
+        {% else %}    
+                <p class="no-results"> Not a car found </p>
+        {% endif %}
+    </div>
+
+    {% include "partials/footer.html" %}
+
+{% endblock 'body' %}

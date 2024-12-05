@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block 'body' %}
+
+
+    {% include "partials/navbar.html" %}
+
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+        <table>
+            {{ car_form.as_table }}
+        </table>
+        
+        <input type="submit" value="Register" class="btn">
+
+    </form>
+
+{% endblock 'body' %}

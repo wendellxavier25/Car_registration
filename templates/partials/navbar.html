@@ -1,0 +1,24 @@
+{% load static %}
+
+<nav>
+    <ul>
+        
+
+        <li><a href="{% url 'car:cars_list' %}">Cars</a></li>
+        
+        {% if request.user.is_authenticated %}
+
+            <li><a href="{% url 'car:new_car' %}">Register car</a></li>
+            <li><a href="{% url 'accounts:logout_view' %}">Logout</a></li>
+            <li><h3>Hello, {{ user.username }}</h3></li>
+            
+        {% else %}
+
+            <li><a href="{% url 'accounts:login_view' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">register account</a></li>
+
+        {% endif %}
+        
+        
+    </ul>
+</nav>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block 'body' %}
+
+        <form method="POST">{% csrf_token %}
+
+            <table>
+                {{ login_form.as_table }}
+            </table>
+
+            <input type="submit" value="Enter">
+
+        </form>
+
+
+{%endblock 'body' %}
