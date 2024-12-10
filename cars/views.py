@@ -34,3 +34,6 @@ class NewCarCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "Create success car")
         return super().form_valid(form)
         
+    def form_invalid(self, form):
+        messages.error(self.request, "mistake in creating a car")
+        return super().form_invalid(form)

@@ -1,3 +1,21 @@
-.message-success{
-    color: #1c6904;
+.message{
+    list-style-type: none;
+    padding: 0;
+}
+
+.message li {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #5af889;
+    border-radius: 1rem;
+}
+
+.message li.success {
+    background-color: #00f549;
+    color: #155724;
+}
+
+.message li.error {
+    background-color: #f8d7da;
+    color: #721c24;
 }
