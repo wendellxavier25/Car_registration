@@ -1,9 +1,7 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.contrib import messages
+from django.urls import reverse_lazy
 from .models import Car
 from .forms import CarModelForm
 
@@ -16,25 +14,23 @@ class CarsListView(ListView):
 
     def get_queryset(self):
         cars = super().get_queryset().order_by('model')
-        seacrh = self.request.GET.get('search')
-        
-        if seacrh:
-            cars = cars.filter(model__icontains=seacrh)
+        search = self.request.GET.get('search')
+        if search:
+            cars = cars.filter(model__icontains=search)
         return cars
 
-
-
-
-class NewCarView(LoginRequiredMixin, View):
+           
+        
+    
+class NewCarCreateView(LoginRequiredMixin, CreateView):
     login_url = 'accounts:login_view'
 
-    def get(self, request):
-        car_form = CarModelForm()
-        return render(request, 'new_car.html', {'car_form': car_form})
-    
-    def post(self, request):
-        car_form = CarModelForm(request.POST, request.FILES)
-        if car_form.is_valid():
-            car_form.save()
-            return redirect('car:cars_list')
-        return redirect('car:new_car')
+    model = Car
+    form_class = CarModelForm
+    template_name = 'new_car.html'
+    success_url = reverse_lazy('car:new_car')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Create success car")
+        return super().form_valid(form)
+        

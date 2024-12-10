@@ -5,13 +5,21 @@
 
 {% block 'body' %}
 
+    <link rel="stylesheet" href="{% static 'car/css/newcar.css' %}">
 
     {% include "partials/navbar.html" %}
 
     <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="message-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
         <table>
-            {{ car_form.as_table }}
+            {{ form.as_table }}
         </table>
         
         <input type="submit" value="Register" class="btn">
