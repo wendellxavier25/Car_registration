@@ -1,21 +1,25 @@
 {% load static %}
 
-<nav>
-    <ul>
+<link rel="stylesheet" href="{% static 'geral/css/nav.css' %}">
+
+<nav class="nav">
+    <ul class="ul-nav">
         
 
-        <li><a href="{% url 'car:cars_list' %}">Cars</a></li>
+        <li>
+            <a href="{% url 'car:cars_list' %}"><i class="fa-solid fa-house" style="color: #cccccc;"></i> Cars</a>
+        </li>
         
         {% if request.user.is_authenticated %}
 
-            <li><a href="{% url 'car:new_car' %}">Register car</a></li>
-            <li><a href="{% url 'accounts:logout_view' %}">Logout</a></li>
-            <li><h3>Hello, {{ user.username }}</h3></li>
+            <li><a href="{% url 'car:new_car' %}"><i class="fa-solid fa-car" style="color: #cccccc;"></i> Register car</a></li>
+            <li><a href="{% url 'accounts:logout_view' %}"><i class="fa-solid fa-xmark" style="color: #cccccc;"></i> Logout</a></li>
+            <li><h3><i class="fa-solid fa-user" style="color: #cccccc;"></i> Hello, {{ user.username }}</h3></li>
             
         {% else %}
 
-            <li><a href="{% url 'accounts:login_view' %}">Login</a></li>
-            <li><a href="{% url 'accounts:register' %}">register account</a></li>
+            <li><a href="{% url 'accounts:login_view' %}"><i class="fa-solid fa-circle-user" style="color: #cccccc;"></i> Login</a></li>
+            <li><a href="{% url 'accounts:register' %}"><i class="fa-solid fa-id-card" style="color: #cccccc;"></i> register account</a></li>
 
         {% endif %}
         

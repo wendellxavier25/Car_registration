@@ -1,0 +1,28 @@
+.nav {
+    display: flex;
+    background-color: #db2828;
+    padding: 1rem;
+    
+    
+}
+
+
+.ul-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+    color: #000000;
+    transition: background-color 0.3s ;
+    gap: 10px;
+}
+
+.ul-nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.ul-nav a:hover {
+    background-color: #914e4e;
+}

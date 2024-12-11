@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Car
@@ -37,3 +37,10 @@ class NewCarCreateView(LoginRequiredMixin, CreateView):
     def form_invalid(self, form):
         messages.error(self.request, "mistake in creating a car")
         return super().form_invalid(form)
+    
+
+class CarDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'
+    
+    

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block 'body' %}
+
+<div class="car-card">
+    <h2> Detail Car</h2>
+    {% if object.photo %}
+        <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
+    {% else %}
+        <img src="/static/images/no-image.WEBP" alt="image invalid">
+    {% endif %}
+    <h2>{{ object.brand }} {{ object.model }}</h2>
+    <p><strong> Year of manufacture: </strong> {{ object.factory_year }}</p>
+    <p><strong> Model year: </strong> {{ object.model_year }}</p>
+    <p><strong> Plate: </strong> {{ object.plate }}</p>
+    <p><strong> Value: </strong> R$ {{ object.value }}</p>
+    
+</div>
+
+<div class="buttons-container">
+    <a href="{% url 'car:cars_list' %}"><i class="fa-solid fa-house" style="color: #cccccc;"></i> Home</a>
+    <a href=""> <i class="fa-solid fa-pen" style="color: #cccccc;"></i> Edit</a>
+    <a href=""> <i class="fa-solid fa-trash" style="color: #cccccc;"></i> Delete</a>
+
+</div>
+
+{% include "partials/footer.html" %}
+{% endblock 'body' %}

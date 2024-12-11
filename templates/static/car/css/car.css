@@ -6,6 +6,7 @@
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px;
+    
 }
 
 
@@ -46,6 +47,8 @@
     margin-bottom: 10px;
 }
 
+
+
 @media (max-width: 768px){
     .car-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -79,4 +82,14 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #d63333;
+}
+
+a {
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #d63333;
 }
