@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block 'body' %}
+
+    <div>
+        <div>
+            <h2>Delete Car</h2>
+        </div>
+        <div>
+            <p>are you sure you want to delete the car?</p> <strong>{{ object.brand }} {{ object.model }}</strong>
+            <form method="post">{% csrf_token %}
+                <div>
+                    <button type="submit">Delete Car</button>
+                    <a href="{% url 'car:car_detail' pk=object.pk %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock 'body' %}

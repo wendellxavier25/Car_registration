@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'car/css/car_update.css' %}">
+{% endblock 'head' %}
+
+{% block 'body' %}
+
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <h2>Edit  Car</h2>
+        <table>
+            {{ form.as_table }}
+        </table>
+    </form>
+    <div>
+        <div>
+            <input type="submit" value="Save change" class="btn-save">
+            <a href="{% url 'car:car_detail' pk=object.pk %}" class="btn-cancel"> Cancel</a>
+            <a href="{% url 'car:car_delete' pk=object.pk %}" class="btn btn-delete"> Delete</a>
+        </div>
+    </div>
+
+{% endblock 'body' %}

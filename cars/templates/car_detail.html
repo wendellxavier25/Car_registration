@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'car/css/car_detail.css' %}">
+{% endblock 'head' %}
 
 {% block 'body' %}
 
@@ -16,15 +19,22 @@
     <p><strong> Model year: </strong> {{ object.model_year }}</p>
     <p><strong> Plate: </strong> {{ object.plate }}</p>
     <p><strong> Value: </strong> R$ {{ object.value }}</p>
+    {% if object.bio %}
+        <p><strong> Bio: </strong> {{ object.bio }} </p>
+    {% endif %}
     
 </div>
 
 <div class="buttons-container">
-    <a href="{% url 'car:cars_list' %}"><i class="fa-solid fa-house" style="color: #cccccc;"></i> Home</a>
-    <a href=""> <i class="fa-solid fa-pen" style="color: #cccccc;"></i> Edit</a>
-    <a href=""> <i class="fa-solid fa-trash" style="color: #cccccc;"></i> Delete</a>
+    {% if not request.user.is_authenticated %}
+            <a href="{% url 'car:cars_list' %}" class="btn btn-home"><i class="fa-solid fa-house" style="color: #cccccc;"></i> Home</a>
+        {% else %}
+            <a href="{% url 'car:car_update' pk=object.pk %}" class="btn btn-edit"> <i class="fa-solid fa-pen" style="color: #cccccc;"></i> Edit</a>
+            <a href="{% url 'car:car_delete' pk=object.pk %}" class="btn btn-delete"> <i class="fa-solid fa-trash" style="color: #cccccc;"></i> Delete</a>
+    {% endif %}
 
 </div>
+
 
 {% include "partials/footer.html" %}
 {% endblock 'body' %}

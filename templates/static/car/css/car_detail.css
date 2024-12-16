@@ -1,0 +1,37 @@
+.buttons-container {
+    padding: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    padding: 1rem;
+    margin: 1rem;
+    
+}
+
+.btn-delete {
+    color: #000;
+    background-color: #f01212;
+    border-radius: 2px solid #000;
+}
+
+.btn-home, .btn-edit {
+    color: #000;
+    background-color: #492bf5;
+    border-radius: 2px solid #000;
+}
+
+.btn-home:hover, .btn-edit:hover {
+    cursor: pointer;
+    background-color: #1a0688;
+    box-shadow: 0 2px 2px #1a0688;
+}
+
+.btn-delete:hover {
+    cursor: pointer;
+    background-color: #830808;
+    box-shadow: 0 2px 2px #811313;
+}

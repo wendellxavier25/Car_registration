@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Car
@@ -13,14 +13,12 @@ class CarsListView(ListView):
     context_object_name = 'cars'
 
     def get_queryset(self):
-        cars = super().get_queryset().order_by('model')
+        cars = super().get_queryset().order_by('-model')
         search = self.request.GET.get('search')
         if search:
             cars = cars.filter(model__icontains=search)
         return cars
-
            
-        
     
 class NewCarCreateView(LoginRequiredMixin, CreateView):
     login_url = 'accounts:login_view'
@@ -39,8 +37,26 @@ class NewCarCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
     
 
+
 class CarDetailView(DetailView):
     model = Car
     template_name = 'car_detail.html'
     
     
+class CarUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'accounts:login_view'
+
+    model = Car
+    form_class = CarModelForm
+    template_name = 'car_update.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('car:car_detail', kwargs={'pk': self.object.pk})
+
+
+class CarDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'accounts:login_view'
+
+    model = Car
+    template_name = 'car_delete.html'
+    success_url = reverse_lazy('car:cars_list')

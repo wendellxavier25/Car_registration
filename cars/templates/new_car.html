@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'car/css/newcar.css' %}">
+{% endblock 'head' %}
 
 
 {% block 'body' %}
-
-    <link rel="stylesheet" href="{% static 'car/css/newcar.css' %}">
 
     {% include "partials/navbar.html" %}
 
